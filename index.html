@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: tab title and the text that shows when you send the link to someone -->
+<title>Bina</title>
+<meta name="description" content="RN, in PMHNP school, movement addict, and creator of things.">
+<meta property="og:title" content="Bina">
+<meta property="og:description" content="RN, in PMHNP school, movement addict, and creator of things.">
+<!-- EDIT: once your photo is in the repo, put its filename here -->
+<meta property="og:image" content="photo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Karla:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     BALAYAGE PALETTE, pulled from Profile.jpg.
+     Dark at the root, light at the ends, no hard edges.
+     Flat alternates are parked at the bottom of this stylesheet.
+     ============================================================ */
+  :root {
+    --ink:     #161B29;   /* main text, from the dark in the photo */
+    --soft:    #64504A;   /* secondary text */
+    --label:   #775F57;   /* section labels */
+    --accent:  #7F5147;   /* arrows and links */
+    --root:    #DFCFC7;   /* top of the page */
+    --mid:     #EFE4DE;
+    --tip:     #F7F1EE;   /* bottom of the page, kept off pure white so cards stay visible */
+    --ring-a:  #6E4F49;   /* photo ring, dark end */
+    --ring-b:  #B5968D;
+    --ring-c:  #E3D2CA;   /* photo ring, light end */
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 3.5rem;
+    color: var(--ink);
+    font-family: "Karla", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+
+    /* The balayage itself. It stretches over the whole length of the
+       page, so the bottom never drops out to plain white. */
+    background: linear-gradient(180deg,
+                  var(--root) 0%,
+                  var(--mid)  40%,
+                  var(--tip)  100%);
+    min-height: 100vh;
+  }
+
+  html { background: var(--tip); }
+
+  .wrap { max-width: 460px; margin: 0 auto; }
+
+  .top { text-align: center; margin-bottom: 2.25rem; }
+
+  /* The ring runs through the same tones as the background,
+     which is what makes your photo look placed rather than pasted. */
+  .portrait-ring {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    padding: 4px;
+    margin: 0 auto 1.1rem;
+    background: linear-gradient(160deg, var(--ring-a) 0%, var(--ring-b) 55%, var(--ring-c) 100%);
+  }
+
+  /* Your photo is embedded directly in the img tag below as a data URI,
+     so there is no separate image file to keep track of. */
+  .portrait {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #D8C3AC;
+  }
+
+  .name {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 46px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    line-height: 1.05;
+  }
+
+  .intro {
+    font-size: 15.5px;
+    color: var(--soft);
+    margin: 0 auto;
+    max-width: 34ch;
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  .group-label {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--label);
+    margin: 1.75rem 0 0.6rem;
+    padding-left: 2px;
+  }
+
+  .group-label:first-of-type { margin-top: 0; }
+
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    /* Soft, borderless-looking cards that stay visible the whole way
+       down: a translucent wash plus a hairline and a faint shadow. */
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(127, 81, 71, 0.10);
+    box-shadow: 0 1px 2px rgba(59, 35, 30, 0.04), 0 4px 14px rgba(59, 35, 30, 0.05);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
+  }
+
+  .link:hover, .link:focus-visible {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 4px rgba(59, 35, 30, 0.06), 0 8px 22px rgba(59, 35, 30, 0.08);
+  }
+
+  .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .link-title { font-weight: 500; font-size: 16px; display: block; }
+  .link-note  { font-size: 13.5px; color: var(--soft); display: block; margin-top: 1px; }
+  .arrow      { color: var(--accent); font-size: 17px; flex-shrink: 0; }
+
+  footer {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 0.6rem;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link { transition: none; }
+    .link:hover { transform: none; }
+  }
+
+  /* ============================================================
+     FLAT ALTERNATES, parked.
+     To use one: uncomment its block, then in body above delete
+     the background and background-attachment lines and put
+     background: var(--page); in their place. Also delete the
+     .link:nth-of-type rules and set .link background to var(--card)
+     with border-color var(--edge).
+
+     1. Slate and vermillion
+     --page:#EEF1F3; --ink:#161C22; --soft:#5C6B75;
+     --card:#FFFFFF; --edge:#D9E1E6; --accent:#D9482B;
+
+     2. Chalk and cobalt
+     --page:#F4F4F2; --ink:#15161B; --soft:#64656B;
+     --card:#FFFFFF; --edge:#E1E1DD; --accent:#2B49C9;
+
+     3. Bone and deep teal
+     --page:#F2EFE9; --ink:#1C201E; --soft:#676B64;
+     --card:#FFFFFF; --edge:#E0DACE; --accent:#0E5F55;
+
+     4. Paper and citron
+     --page:#FAFAF6; --ink:#14161A; --soft:#63665E;
+     --card:#FFFFFF; --edge:#E3E4DC; --accent:#5F7003;
+     ============================================================ */
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  <div class="top">
+    <div class="portrait-ring">
+      <img src="data:image/jpeg;base64,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" class="portrait" alt="Bina">
+    </div>
+
+    <p class="name">Bina</p>
+    <p class="intro">I'm a curious and driven human who dabbles in this and that. RN in PMHNP school, movement addict, and creator of things.</p>
+  </div>
+
+  <!-- EDIT: the remaining placeholders are in the footer below.
+       data-track is the name that shows up in your analytics. -->
+
+  <p class="group-label">Education &amp; career</p>
+
+  <a class="link" href="https://www.linkedin.com/in/bina-aaron-88a078b2" data-track="nursing">
+    <span>
+      <span class="link-title">LinkedIn</span>
+      <span class="link-note">Psych nursing at Mayo Clinic, pediatric emergency, and peer support work in New York. Now in PMHNP school.</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+
+  <!-- ============================================================
+       THINGS I HAVE BUILT, parked until each project has a live link.
+       To bring a row back: remove the comment markers wrapped around
+       it, and put the real link in href. Bring the section label
+       back along with the first row.
+       ============================================================ -->
+
+  <p class="group-label">Things I have built</p>
+
+  <!--
+  <a class="link" href="#" data-track="care-library">
+    <span>
+      <span class="link-title">The Care Library</span>
+      <span class="link-note">Grounding practices, watchable on the page</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  -->
+
+  <!-- delu: point this straight at the app once it is live -->
+  <!--
+  <a class="link" href="#" data-track="delu">
+    <span>
+      <span class="link-title">delu</span>
+      <span class="link-note">A habit tracker, made with a friend</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  -->
+
+  <a class="link" href="https://deludeveloper.github.io/PlyoDice/" data-track="plyodice">
+    <span>
+      <span class="link-title">PlyoDice</span>
+      <span class="link-note">Randomized plyometric workouts, being rebuilt into a full routine builder</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+
+  <p class="group-label">Movement</p>
+
+  <a class="link" href="https://instagram.com/caffinatedbeans" data-track="movement-instagram">
+    <span>
+      <span class="link-title">@caffinatedbeans</span>
+      <span class="link-note">Lifting, hand balancing, acro, running</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+
+  <a class="link" href="https://www.strava.com/athletes/127264543" data-track="strava">
+    <span>
+      <span class="link-title">Strava</span>
+      <span class="link-note">Every run, for better or worse</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+
+  <p class="group-label">Things I'm a part of</p>
+
+  <a class="link" href="https://instagram.com/cheesesluts" data-track="cheesesluts">
+    <span>
+      <span class="link-title">@cheesesluts</span>
+      <span class="link-note">Cheese forward events and activations</span>
+    </span>
+    <span class="arrow" aria-hidden="true">&rarr;</span>
+  </a>
+
+  <footer>
+    <!-- Filled in once the GitHub username is known. Add an email
+         link here only if you want your address public.
+    <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+    <a href="mailto:you@example.com">Email</a>
+    -->
+  </footer>
+
+</main>
+
+<!-- ============================================================
+     ANALYTICS. Free, no cookie banner needed.
+     1. Sign up at goatcounter.com and pick a code, e.g. "bina".
+     2. Replace MYCODE below with it.
+     3. Stats live at https://MYCODE.goatcounter.com
+     Delete this whole block if you would rather not track anything.
+     ============================================================ -->
+<!-- Switched off until MYCODE is replaced. Delete the two comment
+     markers around this tag to turn analytics on.
+<script data-goatcounter="https://MYCODE.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+-->
+
+<script>
+  // Records which link was tapped, as a named event.
+  document.querySelectorAll('.link').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (!window.goatcounter || !window.goatcounter.count) return;
+      window.goatcounter.count({
+        path:  'click-' + (el.dataset.track || 'unnamed'),
+        title: el.querySelector('.link-title').textContent,
+        event: true
+      });
+    });
+  });
+</script>
+</body>
+</html>
